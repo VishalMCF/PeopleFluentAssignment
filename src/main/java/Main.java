@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         ICatalog catalog = new ProductCatalog();
-        ICart cart = new Cart();
+        Cart cart = new Cart();
         DashBoard dashBoard = new DashBoard(catalog, cart);
         List<String> input = loadInput("input.txt");
         List<String> catalogInput = loadInput("catalog.txt");
@@ -28,12 +28,17 @@ public class Main {
             cart.addToCart(catalog.chooseProduct(pName), 1);
         }
 
+        // applying oranges offer
+        cart.applyOffer(new Buy3OrgFor2());
+
+        // applying apple offer
+        cart.applyOffer(new Buy1AppleGet1Free());
+
         System.out.println(cart.getTotal());
     }
 
     public static List<String> loadInput(String fileName){
         List<String> inputList = new ArrayList<>();
-        String workingDir = System.getProperty("user.dir");
         try {
             File myObj = new File(fileName);
             Scanner myReader = new Scanner(myObj);

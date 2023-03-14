@@ -1,4 +1,8 @@
+import java.util.Map;
+
 public interface ICart {
-    public void addToCart(Product product, int quantity);
-    public double getTotal();
+    void addToCart(Product product, int quantity);
+    double getTotal();
+    Map<Product, Integer> getItems();
+    void setTotalValue(double value);
 }
